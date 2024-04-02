@@ -1,12 +1,14 @@
 package repository
+import com.typesafe.config.ConfigFactory
 import models._
 import slick.jdbc.MySQLProfile.api._
+
 import scala.concurrent._
 import scala.concurrent.duration.DurationInt
 
 object WeatherRepository {
 
-  private val db: Database = Database.forURL("jdbc:mysql://localhost:3306/clima", "root", "toor")
+  val db: Database = Database.forConfig("mydb")
 
   private class Climas(tag: Tag) extends Table[(String, String, String)] (tag, "climas") {
     private def descripcion = column[String]("descripcion")
